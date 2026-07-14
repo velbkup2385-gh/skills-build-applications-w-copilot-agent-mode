@@ -9,14 +9,20 @@ export function getApiBaseUrl() {
 }
 
 export function getApiUrl(resource) {
-  return `${getApiBaseUrl()}/api/${resource}/`;
+  const baseUrl = getApiBaseUrl();
+  return `${baseUrl}/api/${resource}/`;
 }
 
 export async function fetchCollection(resource) {
-  const response = await fetch(getApiUrl(resource));
+  const url = getApiUrl(resource);
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
 
   if (!response.ok) {
-    throw new Error(`Failed to load ${resource}`);
+    throw new Error(`Failed to load ${resource} from ${url}`);
   }
 
   const payload = await response.json();
