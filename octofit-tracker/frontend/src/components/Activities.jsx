@@ -6,7 +6,7 @@ function getApiUrl() {
     ? `https://${codespaceName}-8000.app.github.dev`
     : 'http://localhost:8000';
 
-  return `${baseUrl}/api/activities/`;
+  return `${baseUrl}/api/activities`;
 }
 
 async function fetchActivities() {
